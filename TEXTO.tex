@@ -56,10 +56,16 @@
     \setpenalties\clubpenalties {2}{10000}
 \stopsetups
 
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\hyphenpenalty=1000
+\exhyphenpenalty=1000
 
-\setupbodyfont[11pt]
+\definefontfamily [minion] [rm] [MinionPro]
+                  [tf=file:MinionPro-Regular.ttf,
+                   it=file:MinionPro-It.ttf,
+                   bf=file:MinionPro-Bold.ttf,
+                   bi=file:MinionPro-BoldIt.ttf]
+
+\setupbodyfont[minion,11pt]
 
 % Indenting [4.4 cont-enp.p.65]
 \setupindenting[yes, 3ex]  % none small medium big next first dimension
@@ -77,24 +83,61 @@
    location={bottom,margin},            % Localização dos números de página
    style=bf] 
 
+
+\definepagecolumns
+[example]
+[n=2]
+
+% Definições de sumário
+\setupheadtext[content=Sumário]
+\setupcombinedlist[content]
+         [list={title,subject},
+          alternative=c,
+          criterium=local]
+
+\setuphead
+[title]
+[{width=0.8\textwidth},
+%grid=top,
+before={\mbox{}\blank[6cm]},
+number=no,
+style=bfd,
+align={flushleft,nothyphenated},
+textstyle=bf,
+]
+
+
    \starttext
 
-{\bf Prática da cena política}
+\startalignment[middle]
+{\bfd Prática da cena política}
 
-{\bf Teatro dos Universitários de São Paulo}
+{\itb Teatro dos Universitários de São Paulo}
+
+\blank[big]
 
 Maria Lívia Nobre Goes
 
 Sérgio de Carvalho
 
-Laboratório de Investigação em Teatro e Sociedade
+%Laboratório de Investigação em Teatro e Sociedade
+
+\vfill
 
 EDITORA HEDRA
+\stopalignment              
+
+\page
+
+\completecontent
+
+\page
 
 \title{APRESENTAÇÃO}
 
-\section{TUSP COMO MODELO DE TEATRO POLÍTICO}
+\subject{TUSP COMO MODELO DE TEATRO POLÍTICO}
 
+\startcolumns[n=2]
 Este livro procura apresentar a história do grupo {\em Teatro dos
 Universitários de São Paulo} de um ângulo específico: o de seu
 {\em trabalho teatral}.
@@ -166,7 +209,7 @@ uma arte atual inconformista e não-mercantil.\footnote{O contato com o
   mas ela permitiu vislumbrar que a trajetória do TUSP poderia inspirar
   novas práticas teatrais, o que é o objetivo deste livro.}
 
-\section{Políticas do teatro}
+\subject{Políticas do teatro}
 
 Ainda que o TUSP não fosse um grupo de {\em teatro político} no sentido
 estrito da expressão, toda sua atividade esteve atravessada pelo diálogo
@@ -256,28 +299,22 @@ agitação, teatro de intervenção, teatro engajado, teatro participativo,
 teatro de guerrilha. De modo geral, era composto por grupos regulares ou
 ocasionais que procuravam:
 
-\startitemize[a]
+\startitemize[a,packed]
 \item
-  \startblockquote
   Uma linha política definida, elaborada a partir da orientação de
   partidos ou movimentos. Havia casos em que os coletivos de arte eram
   convidados a colaborar com os partidos depois de constituídos; e
   sempre se podia agir de modo independente em relação às diretrizes
   políticas externas;
-  \stopblockquote
 \item
-  \startblockquote
   O espetáculo como parte de um processo politizante maior, o que
   incluía ações preparatórias como encontros, distribuição de material
   didático e ações complementares. As apresentações artísticas eram
   seguidas de palestras ou de debates;
-  \stopblockquote
 \item
-  \startblockquote
   Combinação artística entre o espetáculo e outras estratégias de
   experiência comunitária, como a realização de festas, jogos, vivências
   comuns etc.;
-  \stopblockquote
 \stopitemize
 
 Do ponto de vista produtivo, esse {\em teatro político} raramente se
@@ -289,53 +326,31 @@ aproximar do que costuma ser chamado {\em teatro popular}. Algumas de
 suas formas tentavam imitar estilos da cena não-burguesa do passado.
 Constitui-se, assim, uma tradição formal baseada em:
 
-\startitemize[a]
+\startitemize[a,packed]
 \item
-  \startblockquote
   Apresentações ao ar livre com chamamento festivo;
-  \stopblockquote
 \item
-  \startblockquote
   Personagens e situações típicas ou alegóricas;
-  \stopblockquote
 \item
-  \startblockquote
   Configuração cômica;
-  \stopblockquote
 \item
-  \startblockquote
   Caráter de denúncia;
-  \stopblockquote
 \item
-  \startblockquote
   Apresentação do caso representativo do problema com jogo teatral
   exposto, muitas vezes com máscaras e bonecos, sendo os adereços,
   cenários e figurinos estilizados.
-  \stopblockquote
 \item
-  \startblockquote
   Uso de cenas coreográficas com “combates”;
-  \stopblockquote
 \item
-  \startblockquote
   Uso de uma teatralidade do debate: a cena-assembleia, a cena-tribunal;
-  \stopblockquote
 \item
-  \startblockquote
   Uso de coros e falas narrativas;
-  \stopblockquote
 \item
-  \startblockquote
   Uso de canções e música narrativa;
-  \stopblockquote
 \item
-  \startblockquote
   Uso de dados informativos, muitas vezes estatísticos;
-  \stopblockquote
 \item
-  \startblockquote
   Tentativa de conectar o espetáculo à experiência real do público.
-  \stopblockquote
 \stopitemize
 
 É evidente que existem muitas outras formas de {\em teatro político} que
@@ -387,9 +402,11 @@ independente, como crítica a uma cultura autocentrada. Sua beleza vem de
 uma disposição à metamorfose combativa, da rejeição às reproduções
 confortáveis, da alegria da prática, do esforço pelas equiparações
 possíveis, para que as diferenças sejam vivas.
+\stopcolumns
 
 \title{PARA A FORMAÇÃO DE UM COLETIVO ARTÍSTICO-CULTURAL}
 
+\startpagecolumns[example]
 O Teatro dos Universitário de São Paulo, como qualquer grupo artístico
 inconformista, não queria reproduzir caminhos alheios, desejava
 encontrar o próprio. Por outro lado, intuía que uma aprendizagem
@@ -398,7 +415,7 @@ conhecimento crítico que produza uma independência real, e não
 imaginária. O TUSP não começou, assim, como um grupo de teatro, e sim
 como um coletivo de estudos. Foi imaginado como um centro cultural.
 
-\section{Modelos históricos: vanguarda e formação}
+\subject{Modelos históricos: vanguarda e formação}
 
 Os momentos de transformação da arte são também aqueles em que um grupo
 pesquisa formas estéticas a partir de uma reflexão necessária sobre a
@@ -546,7 +563,7 @@ procurava uma unidade contraditória entre a teoria e a prática, que os
 levasse a uma {\em práxis} artística. E nisso seguia a tradição da
 melhor cena experimental do século XX.
 
-\section{Para definir a orientação do grupo e estabelecer parcerias}
+\subject{Para definir a orientação do grupo e estabelecer parcerias}
 
 A origem do TUSP se deu em torno de um programa de encontros
 pedagógicos. Os jovens estudantes das faculdades de Arquitetura,
@@ -562,19 +579,13 @@ Faculdade de Medicina da USP. Em cada dia houve um tema central, em que
 um conferencista atuava como coordenador dos trabalhos da mesa e
 apresentava questões importantes para o debate do auditório:
 
-\startitemize[n]
+\startitemize[n,packed]
 \item
-  \startblockquote
   “Universidade e Cultura”, mesa coordenada por Antonio Candido;
-  \stopblockquote
 \item
-  \startblockquote
   “Teatro Popular”, mesa coordenada por Décio de Almeida Prado;
-  \stopblockquote
 \item
-  \startblockquote
   “Indústria Cultural”, mesa coordenada por Anatol Rosenfeld.
-  \stopblockquote
 \stopitemize
 
 A escolha desses três nomes foi significativa. Tratavam-se de figuras de
@@ -883,7 +894,7 @@ cena moderna no Brasil, e transitava pela crítica.
 
 O TUSP nasceu como um lugar de encontros e debates.
 
-\section{Avaliação dos encontros e escolha dos novos estudos}
+\subject{Avaliação dos encontros e escolha dos novos estudos}
 
 É impossível dizer se o Congresso conseguiu {\em definir a orientação}
 do grupo, como anunciava o título da matéria jornalística que o
@@ -978,7 +989,7 @@ sua versão de um {\em Escritório de Dramaturgistas}, de um {\em Coletivo
 Dramatúrgico} que tinha por missão escolher e traduzir as peças a serem
 encenadas.
 
-\section{Formação do Coletivo Dramatúrgico e realização de leituras-cênicas}
+\subject{Formação do Coletivo Dramatúrgico e realização de leituras-cênicas}
 
 É muito possível que a existência desse informal Coletivo Dramatúrgico
 do TUSP se ligue à decisão de realizarem experimentações cênicas, algo
@@ -1089,7 +1100,7 @@ levaria à montagem de duas peças de Brecht. E o grupo deixaria uma
 terceira inacabada: {\em Um Homem é um Homem}, última a ser ensaiada
 antes do fim do grupo em 1969.
 
-\section{Organização do trabalho: comissões internas}
+\subject{Organização do trabalho: comissões internas}
 
 Desde o início, o TUSP se apresentou de forma pública, como um coletivo
 aberto e permeável. Entretanto, para a organização dos trabalhos
@@ -1163,7 +1174,7 @@ Império. E para um conjunto de aulas de {\em Interpretação} veio Paulo
 José, outro artista do Arena, que tinha dirigido algumas das leituras
 cênicas do grupo.
 
-\section{Frentes de cinema, literatura, música e comunicação de massa}
+\subject{Frentes de cinema, literatura, música e comunicação de massa}
 
 É importante registrar que o fortalecimento do projeto teatral do TUSP
 não implicou o desaparecimento da vontade de uma atuação
@@ -1309,7 +1320,7 @@ imaginativa que procurava ser igualitária e, a seu modo, utópica.
 MAGEM 1 A 4 - DIVULGAÇÃO DE CURSOS DO
 TUSP{\externalfigure[media/image47.jpg][width=2.95276in,height=3.69938in]}{\externalfigure[media/image51.jpg][width=2.95276in,height=3.69094in]}{\externalfigure[media/image53.jpg][width=2.95276in,height=3.68251in]}{\externalfigure[media/image49.jpg][width=2.95276in,height=3.72047in]}
 
-\section{Base de ensaios e parcerias institucionais}
+\subject{Base de ensaios e parcerias institucionais}
 
 Para viabilizar materialmente suas ações, num momento em que não tinha
 nenhuma subvenção, o TUSP procurou estabelecer uma rede de parcerias com
@@ -1396,7 +1407,7 @@ Arcozelo{\externalfigure[media/image17.png][width=5.79688in,height=6.94417in]}
 
 {[}{\em O Globo}, Rio de Janeiro, 7 jul. 1967, p. 5{]}
 
-\section{Definição de uma estratégia estético-política}
+\subject{Definição de uma estratégia estético-política}
 
 É possível dizer que no intenso primeiro ano de existência do TUSP as
 múltiplas atividades tinham ao mesmo tempo objetivos formativos e de
@@ -1471,10 +1482,11 @@ estudante francês que abandonou seus estudos para se juntar à guerrilha
 de Che Guevara na Bolívia, e escreveu em seus diários: “O estudante deve
 se suicidar como categoria social para renascer como revolucionário.”
 
-DOCUMENTO 1 - DECIDIR SE SERÁ TRANSCRITO OU IMAGEM (APARTE
-1){\externalfigure[media/image30.png][width=5.02604in,height=7.62881in]}{\externalfigure[media/image14.png][width=5.40104in,height=8.08294in]}
+%DOCUMENTO 1 - DECIDIR SE SERÁ TRANSCRITO OU IMAGEM (APARTE 1)
+{\externalfigure[media/image30.png][width=5.02604in,height=7.62881in]}
+{\externalfigure[media/image14.png][width=5.40104in,height=8.08294in]}
 
-DOCUMENTO 2 - DECIDIR SE SERÁ TRANSCRITO (APARTE 2)
+%DOCUMENTO 2 - DECIDIR SE SERÁ TRANSCRITO (APARTE 2)
 
 {\externalfigure[media/image42.png][width=5.18229in,height=8.01147in]}
 
@@ -1530,7 +1542,7 @@ faculdades, e não em palcos convencionais. O grupo queria mobilizar e
 aprender com um público trabalhador e pobre, que raramente frequenta os
 espaços culturais do centro da cidade.
 
-\section{Modelos de teatralidade: a cena volante}
+\subject{Modelos de teatralidade: a cena volante}
 
 É possível dizer que a história da cena política do século XX se
 confunde com a da cena móvel, que almeja sair do lugar de classe do
@@ -1613,7 +1625,7 @@ julgamento. E os temas não seriam locais, nem a forma teria elementos
 reconhecíveis das tradições brasileiras. A peça seria mostrada como uma
 parábola sobre a justiça numa sociedade dividida em classes.
 
-\section{Estudo de formas cênico-dramatúrgicas: aprendizagem e} agitprop
+\subject{Estudo de formas cênico-dramatúrgicas: aprendizagem e agitprop}
 
 O texto agora escolhido pelo TUSP foi uma das chamadas {\em peças de
 aprendizagem} ou {\em peças didáticas} de Brecht. Em mais de uma
@@ -1666,7 +1678,7 @@ quando comparado à cena do {\em agitprop} convencional, baseada na
 denúncia, no reconhecimento ideológico, na definição mais nítida sobre
 quem são os opressores e os oprimidos.
 
-\section{Estudo da peça: A exceção e a regra}
+\subject{Estudo da peça: A exceção e a regra}
 
 A decisão do TUSP pela encenação de {\em A exceção e a regra} como
 alternativa a {\em Santa Joana dos Matadouros}, trazia, assim, uma
@@ -1813,7 +1825,7 @@ teatro uma confirmação de identidades, de exposição de vozes pessoais,
 tentaram ir atrás do que não sabiam, à procura de aprendizagens que só
 podem se dar na prática coletiva.
 
-\section{Formação da equipe: artistas-pesquisadores}
+\subject{Formação da equipe: artistas-pesquisadores}
 
 O modo como o TUSP organizou as equipes de trabalho para o espetáculo
 teatral reflete o modo como prepararam os estudos de formação do
@@ -1890,7 +1902,7 @@ exceção e a regra}, a ideia era que a música fosse executada ao vivo. E
 isso, muitas vezes ocorreu. Sempre que possível havia o acompanhamento
 sonoro do piano.
 
-\section{Ensaios e laboratórios}
+\subject{Ensaios e laboratórios}
 
 Não há documentos ou relatos precisos sobre os procedimentos de ensaio
 utilizados no TUSP nessa primeira montagem. Paulo José, contudo, vinha
@@ -1957,7 +1969,7 @@ convencionalmente pela força vocal da enunciação do texto, e pela
 expressividade emotiva abstrata, critérios comuns na escala de valores
 de um teatro corriqueiro.
 
-\section{Análise social do texto}
+\subject{Análise social do texto}
 
 Pelo conhecimento que temos do trabalho teatral posterior de Paulo José,
 é possível dizer que nos ensaios do TUSP havia um atento esforço de
@@ -2033,7 +2045,7 @@ IMAGENS 6 E 7 - PÁGINAS DO ROTEIRO
 
 FUNARTE/ Centro de Documentação e Pesquisa.
 
-\section{Concepção em processo: a sala como tribuna}
+\subject{Concepção em processo: a sala como tribuna}
 
 Durante a criação de um espetáculo teatral, em determinado momento,
 anterior ou posterior aos ensaios iniciais, criam-se condições para o
@@ -2101,7 +2113,7 @@ coletiva produzida na sala.
 várias intenções artísticas e formativas. Mas a radicalidade do projeto
 - em sua dimensão de aprendizagem - ainda hoje é modelar.
 
-\section{Cenas de um experimento}
+\subject{Cenas de um experimento}
 
 É impossível reconstituir a encenação desse espetáculo que se destinava
 a uma primeira pedagogia - dos artistas universitários e de seu público.
@@ -2247,7 +2259,7 @@ invasores.\footnote{A história, narrada por Armand Gatti em uma
   Strassentheaters in den USA (1965-1970)}. (Tübingen: Gunter Narr,
   1990, p. 15).}
 
-\section{Conceito estadunidense de Teatro de guerrilha}
+\subject{Conceito estadunidense de Teatro de guerrilha}
 
 O {\em teatro de guerrilha} tal como elaborado nos Estados Unidos não se
 deu no âmbito do {\em agitprop} que colabora com uma guerrilha armada
@@ -2578,7 +2590,7 @@ observação final de suas reflexões sobre o tema do teatro politizado,
 Brecht e o trabalho do Berliner Ensemble ainda eram os modelos mais
 úteis e consequentes.
 
-\section{Brasil: A guerrilha no teatro}
+\subject{Brasil: A guerrilha no teatro}
 
 No Brasil, o rótulo de teatro de guerrilha não teve especial projeção.
 Entretanto, o imaginário da guerrilha e da luta armada ganhou espaço na
@@ -2751,7 +2763,7 @@ diferente da {\em peça de aprendizagem} anterior. Seu segundo
 espetáculo, planejado para 1968, seria uma peça de Brecht que fosse mais
 afeita ao propósito de {\em agitação e propaganda}.
 
-\section{Modelo de teatralidade: a cena de intervenção pelo drama social}
+\subject{Modelo de teatralidade: a cena de intervenção pelo drama social}
 
 {\em Os fuzis da Senhora Carrar} é uma peça de 1937, escrita durante a
 Guerra Civil Espanhola, que tem por assunto a crítica da neutralidade
@@ -2883,7 +2895,7 @@ era central para os jovens universitários de esquerda. A questão
 artística seria potencializar nos palco debates dos anos 1930 e
 relacioná-los à vida brasileira atual.
 
-\section{Formação da equipe}
+\subject{Formação da equipe}
 
 Assim como fizeram em {\em A exceção e a regra}, o TUSP convidou um
 artista profissional para colaborar com a equipe universitária. O
@@ -2989,7 +3001,7 @@ pelo conjunto da equipe, com coordenação de Dalton de Luca, outro
 estudante de arquitetura. A concepção cênica se formava, assim, sob o
 signo do trânsito, à procura do fogo da atualidade.
 
-\section{Ensaios e projeto cênico}
+\subject{Ensaios e projeto cênico}
 
 Não há muitos registros ou lembranças que permitam reconstituir o
 processo de ensaios da peça, rebatizada de {\em Os fuzis de Dona Tereza
@@ -3176,7 +3188,7 @@ as ameaças de tipo fascista, que fazem uso da pressão midiática atual e
 da cultura capitalista de massa.\footnote{Veja-se o capítulo “Imagens de
   {\em Os Fuzis}: pesquisa dos gestos”.}
 
-\section{Imaginário guerrilheiro}
+\subject{Imaginário guerrilheiro}
 
 O aspecto conceitual decisivo para que o espetáculo encontrasse na
 coralização das mulheres sua frente de pesquisa central vinha de uma
@@ -3263,7 +3275,7 @@ Latina, e a do Brasil de 1968, todas realizadas contra um capitalismo
 que lança mão do fascismo quando os processos da acumulação liberal
 entram em crise.
 
-\section{Coro das mulheres em armas}
+\subject{Coro das mulheres em armas}
 
 A memória maior da encenação do TUSP, sua intervenção autoral mais livre
 e criativa, foi a aparição do {\em coro de mulheres}. No momento de
@@ -3402,11 +3414,9 @@ CENÁRIO{\externalfigure[media/image23.jpg][width=6.26772in,height=4.69444in]}
 Fotógrafo: L. Pinto. 1968. Acervo Última Hora. Arquivo Público do Estado
 de São Paulo.
 
-\startitemize[R]
+\startitemize[R,packed]
 \item
-  \startblockquote
   Ícones mortuários
-  \stopblockquote
 \stopitemize
 
 Na peça de Brecht, a ação se passa na sala de uma casa de pescadores.
@@ -3463,11 +3473,9 @@ CARRAR{\externalfigure[media/image11.jpg][width=3.89764in,height=5.90551in]}
 Bety Chachamovitz como Senhora Carrar. 1968. Fotógrafo: Victor Knoll.
 Acervo pessoal.
 
-\startitemize[R][start=2]
+\startitemize[R][start=2,packed]
 \item
-  \startblockquote
   Rede trágica
-  \stopblockquote
 \stopitemize
 
 Quando as portas do teatro se abrem, Tereza Carrar e seu filho mais
@@ -3505,11 +3513,9 @@ IMAGENS 26 A 37 {\em SLIDES}
 
 {\em Slides}. Acervo Flávio Império.
 
-\startitemize[R][start=3]
+\startitemize[R][start=3,packed]
 \item
-  \startblockquote
   Sangue audiovisual
-  \stopblockquote
 \stopitemize
 
 O áudio sobre o {\em napalm} é substituído pela gravação de uma
@@ -3552,11 +3558,9 @@ IMAGEM 38 - CARRAR E O FILHO
 Bety Chachamovitz como Senhora Carrar. 1968. Fotógrafo: Victor Knoll.
 Acervo pessoal
 
-\startitemize[R][start=4]
+\startitemize[R][start=4,packed]
 \item
-  \startblockquote
   O mar dos pobres
-  \stopblockquote
 \stopitemize
 
 O diálogo entre mãe e filho se inicia após o prólogo audiovisual, e
@@ -3602,11 +3606,9 @@ André Gouveia como José, Sérgio Mindlin como o operário Pedro Jáqueras e
 Bety Chachamovitz como Senhora Carrar. 1968. Autor desconhecido. Acervo
 Diários Associados. Arquivo Público do Estado de São Paulo.
 
-\startitemize[R][start=5]
+\startitemize[R][start=5,packed]
 \item
-  \startblockquote
   Irmão e combatente
-  \stopblockquote
 \stopitemize
 
 A chegada do irmão de Tereza da frente de batalha aumenta a pressão
@@ -3666,11 +3668,9 @@ Sérgio Mindlin como o operário Pedro Jáqueras, ator não identificado e
 Bety Chachamovitz como Senhora Carrar. 1968. Fotógrafo: Victor Knoll.
 Acervo Flávio Império.
 
-\startitemize[R][start=6]
+\startitemize[R][start=6,packed]
 \item
-  \startblockquote
   Passagem épica
-  \stopblockquote
 \stopitemize
 
 A ação da peça acontece na Andaluzia, região de histórico revolucionário
@@ -3790,11 +3790,9 @@ como o Padre e Rose Lacreta como Senhora Carrar. 1968. Autor
 desconhecido. Acervo Última Hora. Arquivo Público do Estado de São
 Paulo.
 
-\startitemize[R][start=7]
+\startitemize[R][start=7,packed]
 \item
-  \startblockquote
   Defesa do padre
-  \stopblockquote
 \stopitemize
 
 A aparição do Padre dá corpo a um tema anunciado pela grande cruz. Logo
@@ -3860,11 +3858,9 @@ Senhora Perez, André Gouveia como José e (à frente) Bety Chachamovitz
 como Senhora Carrar. 1968. Fotógrafo: Victor Knoll. Acervo Flávio
 Império.
 
-\startitemize[R][start=8]
+\startitemize[R][start=8,packed]
 \item
-  \startblockquote
   Julgamento da Senhora Perez
-  \stopblockquote
 \stopitemize
 
 Enquanto Tereza acompanha a saída do Padre, seu irmão procura os fuzis.
@@ -3916,11 +3912,9 @@ IMAGEM 51 - JOSÉ E TEREZA
 Bety Chachamovitz como Senhora Carrar e André Gouveia como José. 1968.
 Fotógrafo: Victor Knoll. Acervo Flávio Império.
 
-\startitemize[R][start=9]
+\startitemize[R][start=9,packed]
 \item
-  \startblockquote
   Luta pelas armas
-  \stopblockquote
 \stopitemize
 
 A partida da Senhora Perez reacende o conflito. O irmão está furioso com
@@ -3962,11 +3956,9 @@ CORO{\externalfigure[media/image40.png][width=5.90551in,height=3.31496in]}
 Atrizes não identificadas. 1969. {\em Frame} do documentário
 {\em Festival Mondial du Théâtre de Nancy} (1999).
 
-\startitemize[R][start=10]
+\startitemize[R][start=10,packed]
 \item
-  \startblockquote
   Coro de Senhoras Carrar
-  \stopblockquote
 \stopitemize
 
 Na peça de Brecht, a última frase em fúria de Carrar - “quem com ferro
@@ -3999,11 +3991,9 @@ DOLOROSA{\externalfigure[media/image6.png][width=4.9468in,height=2.77439in]}
 Atores não identificados. 1969. {\em Frame} do documentário
 {\em Festival Mondial du Théâtre de Nancy} (1999).
 
-\startitemize[R][start=11]
+\startitemize[R][start=11,packed]
 \item
-  \startblockquote
   {\em Mater Dolorosa}
-  \stopblockquote
 \stopitemize
 
 Tereza se multiplica, assim, nas mulheres do coro. Sua fala dura, porém,
@@ -4030,11 +4020,9 @@ PARTE{\externalfigure[media/image2.png][width=2.54063in,height=3.39063in]}
 Bety Chachamovitz como Senhora Carrar. 1968. Fotógrafo: Victor Knoll.
 Acervo Flávio Império.
 
-\startitemize[R][start=12]
+\startitemize[R][start=12,packed]
 \item
-  \startblockquote
   Decisão das Terezas
-  \stopblockquote
 \stopitemize
 
 O texto de Brecht cria pressões trágicas sobre o drama de Tereza Carrar.
@@ -4089,11 +4077,9 @@ IMAGEM 55 - MISSA NEGRA
 Moacyr Urbano Villela como Bispo acompanhado de ator não identificado.
 1968. Fotógrafo: Victor Knoll. Acervo pessoal.
 
-\startitemize[R][start=13]
+\startitemize[R][start=13,packed]
 \item
-  \startblockquote
   Guerra capitalista
-  \stopblockquote
 \stopitemize
 
 Quando Brecht escreveu sua dramaturgia, em 1937, a Guerra Civil
@@ -5148,7 +5134,7 @@ da Arquitetura que estavam sendo experimentadas na construção de
 Brasília. Foi com esse espírito que escolhi entrar na Faculdade de
 Arquitetura mudando para São Paulo no ano de 1962.
 
-\section{São Paulo e a FAU}
+\subject{São Paulo e a FAU}
 
 Na cidade de São Paulo o ano de 1962 passou rápido. Morei numa pensão de
 estudantes na rua Abolição, a poucos passos do Teatro Brasileiro de
@@ -5219,7 +5205,7 @@ Artigas passou a ser procurado pela polícia e se exilou no Uruguai. Até
 então as marchadeiras que desfilavam de terço nas mãos exorcizando o
 “comunismo” não passavam de curiosidades exóticas.
 
-\section{O Golpe}
+\subject{O Golpe}
 
 Consumado o Golpe Militar começou a caça às bruxas. Vários professores
 foram perseguidos e um “inquérito político” foi instalado. Perante um
@@ -5275,7 +5261,7 @@ repressão e a direita que tinha usurpado o governo. Muitos estudantes da
 FAU tiveram uma grande participação nesse projeto cultural junto com
 muitos outros de várias escolas da USP, da PUC e do Mackenzie.
 
-\section{O TUSP}
+\subject{O TUSP}
 
 Esses anos foram marcados na cultura por obras que se tornaram clássicas
 do cinema nacional. {\em Vidas secas}; {\em Deus e o Diabo da Terra do
@@ -5389,7 +5375,7 @@ diferença. A montagem do cenário com suas estruturas de andaimes era
 prática e se fazia em qualquer lugar onde houvesse tomadas para ligar a
 luz. Se tivesse um piano então\ldots{}
 
-\section{Montagem dos Fuzis de Tereza Carrar}
+\subject{Montagem dos Fuzis de Tereza Carrar}
 
 A montagem de {\em Os fuzis} nasceu de outra proposta: era dirigida ao
 público estudantil e intelectual que vivia um período cada vez mais
@@ -6043,7 +6029,7 @@ Moacyr Urbano Villela
 
 \title{POSFÁCIO}
 
-\section{Caminhos do teatro estudantil no Brasil do século XX}
+\subject{Caminhos do teatro estudantil no Brasil do século XX}
 
 Sara Mello Neiva
 
@@ -6544,7 +6530,7 @@ partilhado.
 
 \title{ANEXO}
 
-\section{BRECHT NO BRASIL ATÉ 1968}
+\subject{BRECHT NO BRASIL ATÉ 1968}
 
 Quando o TUSP encenou {\em Os fuzis da Senhora Carrar}, a peça já era
 vista com desconfiança no Brasil por sua temática antifascista. Depois
@@ -6625,7 +6611,7 @@ Entre 1961 e 1984, foram realizadas pelo menos 30 montagens de {\em Os
 fuzis da Senhora Carrar} no Brasil, excluídos os cinco anos entre 1970 e
 1975, período em que a peça foi totalmente censurada.
 
-\section{Brecht dos amadores}
+\subject{Brecht dos amadores}
 
 A difícil documentação da história das montagens de Brecht no Brasil se
 liga ao fato de ser um autor comunista cuja obra dialoga, por sua vez,
@@ -7173,4 +7159,5 @@ Teatro Guaíra
 
 Curitiba-PR
 
+\stoppagecolumns
 \stoptext
