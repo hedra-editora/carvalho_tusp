@@ -101,9 +101,11 @@ balance=yes]
 \setuphead
 [title]
 [{width=0.8\textwidth},
-%grid=top,
-before={\page\stoppagecolumns\mbox{}\blank[6cm]},
+indentnext=no,
+page=left,
+before={\stoppagecolumns\mbox{}\blank[6cm]},
 after={\startpagecolumns[example]},
+commandafter={\blank[3cm]},
 number=no,
 style=bfd,
 align={flushleft,nothyphenated},
@@ -114,12 +116,28 @@ textstyle=bf,
 \setuphead
 [subject]
 [{width=0.8\textwidth},
-%grid=top,
+before={\blank[2*line]},
+after={\blank[quarterline]},
 number=no,
-style=bfa,
+style=bfb,
 align={flushleft,nothyphenated},
 textstyle=bf,
 ]
+
+
+% Remover label de figuras
+\setupcaption[figure][number=no,align=flushleft,style={\switchtobodyfont[small]\it}]
+
+
+\setupdelimitedtext[blockquote]
+  [
+    before={\blank[line]\noindenting},
+    after={\blank[line]},
+    leftmargin=no,
+    indentnext=no,
+    style=tfx,
+  ]
+
 
 
    \starttext
