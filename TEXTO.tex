@@ -11,7 +11,7 @@
 % Page composition [cont-enp.p.32]
 \setuplayout[
               width=120mm,              % dimension fit middle
-              height=200mm,             % dimension fit middle 
+              height=205mm,             % dimension fit middle 
             % backspace=15mm,           % dimension
               topspace=8mm,            % dimension
               margin=4cm,                % dimension
@@ -86,7 +86,10 @@
 
 \definepagecolumns
 [example]
-[n=2]
+[n=2,
+page=no,
+align=right,
+balance=yes]
 
 % Definições de sumário
 \setupheadtext[content=Sumário]
@@ -99,9 +102,21 @@
 [title]
 [{width=0.8\textwidth},
 %grid=top,
-before={\mbox{}\blank[6cm]},
+before={\page\stoppagecolumns\mbox{}\blank[6cm]},
+after={\startpagecolumns[example]},
 number=no,
 style=bfd,
+align={flushleft,nothyphenated},
+textstyle=bf,
+]
+
+
+\setuphead
+[subject]
+[{width=0.8\textwidth},
+%grid=top,
+number=no,
+style=bfa,
 align={flushleft,nothyphenated},
 textstyle=bf,
 ]
@@ -127,17 +142,12 @@ Sérgio de Carvalho
 EDITORA HEDRA
 \stopalignment              
 
-\page
-
 \completecontent
-
-\page
 
 \title{APRESENTAÇÃO}
 
-\subject{TUSP COMO MODELO DE TEATRO POLÍTICO}
+\subject{TUSP como modelo de teatro político}
 
-\startcolumns[n=2]
 Este livro procura apresentar a história do grupo {\em Teatro dos
 Universitários de São Paulo} de um ângulo específico: o de seu
 {\em trabalho teatral}.
@@ -402,11 +412,10 @@ independente, como crítica a uma cultura autocentrada. Sua beleza vem de
 uma disposição à metamorfose combativa, da rejeição às reproduções
 confortáveis, da alegria da prática, do esforço pelas equiparações
 possíveis, para que as diferenças sejam vivas.
-\stopcolumns
 
 \title{PARA A FORMAÇÃO DE UM COLETIVO ARTÍSTICO-CULTURAL}
 
-\startpagecolumns[example]
+%\startpagecolumns[example]
 O Teatro dos Universitário de São Paulo, como qualquer grupo artístico
 inconformista, não queria reproduzir caminhos alheios, desejava
 encontrar o próprio. Por outro lado, intuía que uma aprendizagem
@@ -7159,5 +7168,5 @@ Teatro Guaíra
 
 Curitiba-PR
 
-\stoppagecolumns
+%\stoppagecolumns
 \stoptext
